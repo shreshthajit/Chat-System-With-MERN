@@ -1,1 +1,1 @@
-npm i express mongoose nodemon socket.io bcrypt cors dotenv
+Here we are creating a simple api
