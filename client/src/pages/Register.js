@@ -28,6 +28,12 @@ const Register = () => {
         confirmPassword: "",
       });
 
+      useEffect(() => {
+        if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+          navigate("/");
+        }
+      }, []);
+
       
     const handleSubmit = async (event) => {
         event.preventDefault();
