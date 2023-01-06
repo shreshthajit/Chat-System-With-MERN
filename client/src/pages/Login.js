@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+    if (localStorage.getItem("chat-app-user")) {
       navigate("/");
     }
   }, []);
@@ -58,7 +58,7 @@ const Login = () => {
       }
       if (data.status === true) {
         localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
+          "chat-app-user",
           JSON.stringify(data.user)
         );
 

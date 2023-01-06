@@ -7,8 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {registerRoute} from '../utils/APIRoutes.js';
 
-
-
 const Register = () => {
 
     const navigate = useNavigate();
@@ -29,10 +27,11 @@ const Register = () => {
       });
 
       useEffect(() => {
-        if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+        if (localStorage.getItem("chat-app-user")) {
           navigate("/");
         }
       }, []);
+    
 
       
     const handleSubmit = async (event) => {
@@ -51,9 +50,10 @@ const Register = () => {
             }
             if (data.status === true) {
               localStorage.setItem(
-                process.env.REACT_APP_LOCALHOST_KEY,
+                "chat-app-user",
                 JSON.stringify(data.user)
               );
+              
             }
             navigate("/");
           }
