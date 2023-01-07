@@ -1,1 +1,1 @@
-Here we have create a new api called allUsers which will give us all the users through this api.
+ 

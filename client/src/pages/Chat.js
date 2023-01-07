@@ -5,21 +5,23 @@ import { useNavigate } from "react-router-dom";
 // import { io } from "socket.io-client";
 import { allUsersRoute } from "../utils/APIRoutes.js";
 import Contacts from "../components/Contacts.js";
+import Welcome from "../components/Welcome.js";
+import ChatContainer from "../components/ChatContainer.js";
 
- 
 const Chat = () => {
   const navigate = useNavigate();
-  const [contacts,setContacts] = useState([]);
-  const [currentUser,setCurrentUser] = useState(undefined);
-  const [currentChat,setCurrentChat] = useState(undefined);
+  const [contacts, setContacts] = useState([]);
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(undefined);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
     async function fetchData() {
       if (!localStorage.getItem("chat-app-user")) {
         navigate("/login");
-      }else {
+      } else {
         setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
-        
+        setIsLoaded(true);
       }
     }
     fetchData();
@@ -27,39 +29,42 @@ const Chat = () => {
 
   useEffect(() => {
     async function fetchData() {
-       if(currentUser){
-        if(currentUser.isAvatarImageSet){
+      if (currentUser) {
+        if (currentUser.isAvatarImageSet) {
           const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
           setContacts(data.data);
           //console.log("this is error"+currentUser);
-        }
-        else{
+        } else {
           navigate("/setAvatar");
         }
-       }
+      }
     }
     fetchData();
   }, [currentUser]);
 
-
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
-  }
+  };
 
   return (
     <div>
       <Container>
-        <div className='container'>
-          <Contacts 
-           contacts={contacts}
-           currentUser={currentUser}
-           changeChat={handleChatChange}
-           />
+        <div className="container">
+          <Contacts
+            contacts={contacts}
+            currentUser={currentUser}
+            changeChat={handleChatChange}
+          />
+          {isLoaded && currentChat === undefined ? (
+            <Welcome currentUser={currentUser} />
+          ) : (
+            <ChatContainer currentUser={currentUser} />
+          )}
         </div>
       </Container>
     </div>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   height: 100vh;
@@ -82,4 +87,4 @@ const Container = styled.div`
   }
 `;
 
-export default Chat
+export default Chat;
