@@ -3,9 +3,21 @@ import styled from "styled-components";
 import ChatInput from "./ChatInput";
 import Logout from "./Logout";
 import Messages from "./Messages";
+import axios from "axios";
+import { sendMessageRoute } from "../utils/APIRoutes.js";
 
-const ChatContainer = ({ currentChat }) => {
-  const handleSendMsg = async (msg) => {}
+const ChatContainer = ({ currentChat, currentUser }) => {
+
+  const handleSendMsg = async (msg) => {
+   let result = await axios.post(sendMessageRoute, {
+      from: currentUser._id,
+      to: currentChat._id,
+      message: msg,
+    });
+    console.log(result.response.data);
+  };
+  
+
   return (
     <>
       {currentChat && (
@@ -22,10 +34,10 @@ const ChatContainer = ({ currentChat }) => {
                 <h3>{currentChat.username}</h3>
               </div>
             </div>
-            <Logout/>
+            <Logout />
           </div>
           <Messages />
-          <ChatInput handleSendMsg={handleSendMsg}/>
+          <ChatInput handleSendMsg={handleSendMsg} />
         </Container>
       )}
     </>
@@ -49,7 +61,7 @@ const Container = styled.div`
       }
       .username {
         h3 {
-            color: white;
+          color: white;
         }
       }
     }

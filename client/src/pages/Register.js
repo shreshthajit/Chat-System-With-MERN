@@ -53,7 +53,6 @@ const Register = () => {
                 "chat-app-user",
                 JSON.stringify(data.user)
               );
-              
             }
             navigate("/");
           }
