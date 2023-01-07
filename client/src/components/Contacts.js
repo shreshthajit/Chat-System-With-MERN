@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
 
-const Contacts = ({ contacts, currentUser }) => {
+const Contacts = ({ contacts, currentUser,changeChat }) => {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -14,10 +14,10 @@ const Contacts = ({ contacts, currentUser }) => {
     }
   }, [currentUser]);
 
-  
+
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
-    // changeChat(contact);
+    changeChat(contact);
   };
 
   console.log("my contacts" + contacts);
@@ -26,7 +26,7 @@ const Contacts = ({ contacts, currentUser }) => {
       {currentUserImage && currentUserName && (
         <Container>
           <div className="brand">
-            <img src="Logo" alt="logo" />
+            <img src={Logo} alt="logo" />
             <h3>snappy</h3>
           </div>
 
