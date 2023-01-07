@@ -1,8 +1,12 @@
 # Here I have implemented the following:
-1. I have made two component called Welcome.js and ChatContainer.js file to see and save it under Chat.js file.
-2. If we click any user and there is no chat then it will show us Welcome.js section oterhwise ChatContainer.js
+1. I have Implemented the ChatContainer.js file and here we will see when we click a user of our chat what it should load
+and how.
+2. I have created Logout.js file and save it to ChatContainer.js file
 
-# Here we have faced an error and so we have declared a state called IsLoaded and if our Contacts get
-# loaded then we can view the page
+# for logout icon:
+# npm install react-icons
 
+
+3. We have created a component called Logout.js
+ and used handleClick because when we click it we will navigate to the login page
  
