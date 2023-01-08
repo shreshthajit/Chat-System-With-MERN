@@ -53,6 +53,7 @@ const ChatInput = ({ handleSendMsg }) => {
 
 const Container = styled.div`
   display: grid;
+  
   align-items: center;
   grid-template-columns: 5% 95%;
   background-color: #080420;
