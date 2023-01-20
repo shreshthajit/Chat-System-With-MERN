@@ -20,6 +20,7 @@ const ChatInput = ({ handleSendMsg }) => {
      
     setMsg(message);
   };
+  
   const sendChat = (event) => {
     event.preventDefault();
     if(msg.length > 0){
@@ -27,6 +28,7 @@ const ChatInput = ({ handleSendMsg }) => {
       setMsg("");
     }
   };
+
 
   return (
     <Container>
